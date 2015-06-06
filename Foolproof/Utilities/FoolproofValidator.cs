@@ -1,7 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Reflection;
 using System.Web.Mvc;
 
 namespace Foolproof
@@ -17,18 +16,64 @@ namespace Foolproof
                 yield return new ModelValidationResult { Message = ErrorMessage };                    
         }
 
-        public override IEnumerable<ModelClientValidationRule> GetClientValidationRules()
+    public override IEnumerable<ModelClientValidationRule> GetClientValidationRules()
+    {
+        if (Attribute is ContingentValidationAttribute)
         {
-            var result = new ModelClientValidationRule()
+            ContingentValidationAttribute attribute = Attribute as ContingentValidationAttribute;
+
+            PropertyInfo otherPropertyInfo = this.Metadata.ContainerType.GetProperty(attribute.DependentProperty);
+
+            var displayName = GetMetaDataDisplayName(otherPropertyInfo);
+
+            if (displayName != null)
             {
-                ValidationType = Attribute.ClientTypeName.ToLower(),
-                ErrorMessage = ErrorMessage       
-            };
-            
-            foreach (var validationParam in Attribute.ClientValidationParameters)
-                result.ValidationParameters.Add(validationParam);
-            
-            yield return result;
+                attribute.DependentPropertyDisplayName = displayName;
+            }
         }
+
+        var result = new ModelClientValidationRule()
+        {
+            ValidationType = Attribute.ClientTypeName.ToLower(),
+            ErrorMessage = ErrorMessage 
+        };
+            
+        foreach (var validationParam in Attribute.ClientValidationParameters)
+            result.ValidationParameters.Add(validationParam);
+            
+        yield return result;
+    }
+
+        private string GetAttributeDisplayName(PropertyInfo property)
+        {
+            var atts = property.GetCustomAttributes(typeof(DisplayAttribute), true);
+
+            if (atts.Length == 0)
+                return null;
+
+            return (atts[0] as DisplayAttribute).GetName();
+        }
+
+
+        private string GetMetaDataDisplayName(PropertyInfo property)
+        {
+            var atts = property.DeclaringType.GetCustomAttributes(
+                typeof(MetadataTypeAttribute), true);
+
+            if (atts.Length == 0)
+            {
+                return GetAttributeDisplayName(property); 
+            }
+
+            var metaAttr = atts[0] as MetadataTypeAttribute;
+            
+            var metaProperty = metaAttr.MetadataClassType.GetProperty(property.Name);
+            
+            if (metaProperty == null)
+                return null;
+
+            return GetAttributeDisplayName(metaProperty);
+        }
+
     }
 }

@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using System.ComponentModel.DataAnnotations;
-using System.Reflection;
 
 namespace Foolproof
 {
@@ -11,6 +8,7 @@ namespace Foolproof
     public abstract class ContingentValidationAttribute : ModelAwareValidationAttribute
     {
         public string DependentProperty { get; private set; }
+        public string DependentPropertyDisplayName { get; set; }
 
         static ContingentValidationAttribute()
         {
@@ -27,7 +25,7 @@ namespace Foolproof
             if (string.IsNullOrEmpty(ErrorMessageResourceName) && string.IsNullOrEmpty(ErrorMessage))
                 ErrorMessage = DefaultErrorMessage;
             
-            return string.Format(ErrorMessageString, name, DependentProperty);
+            return string.Format(ErrorMessageString, name, DependentPropertyDisplayName ?? DependentProperty);
         }
 
         public override string DefaultErrorMessage
