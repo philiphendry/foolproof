@@ -141,7 +141,6 @@
     <script src="~/Scripts/qunit.js"></script>
     <script>
         $(function () {
-            debugger;
             $("form").valid();
 
             module("Is");
@@ -192,8 +191,8 @@
 
             test("EqualTo False", function () {
                 ok(!$("#RequiredTests_EqualToFalse_IsFalseHasValue_Value2").hasClass("input-validation-error"), "False, Valid Test");
-                ok($("#RequiredTests_EqualToFalse_IsFalseNoValue_Value2").hasClass("input-validation-error"), "False, Invalid Test");
-                ok(!$("#RequiredTests_EqualToFalse_IsTrueNoValue_Value2").hasClass("input-validation-error"), "True, Valid Test");
+                ok(!$("#RequiredTests_EqualToFalse_IsFalseNoValue_Value2").hasClass("input-validation-error"), "True, ValidTest");
+                ok($("#RequiredTests_EqualToFalse_IsTrueNoValue_Value2").hasClass("input-validation-error"), "False, Invalid  Test");
             });
         });
     </script>
