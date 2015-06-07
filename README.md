@@ -1,13 +1,13 @@
 foolproof
 =========
 
-Clone of the MVC Foolproof Validation library from https://foolproof.codeplex.com/ with bug fixes
-
-
 MVC Foolproof Validation aims to extend the Data Annotation validation provided in ASP.NET MVC.
 
 
-This fork targets the issue of Foolproof to not work with ```Validator.TryValidateObject(...)```. It would always return true. This caused problems when a validation was triggerd from the server side (e.g. validation a file based import). Now this is possible to with foolproof!
+The original repository is a clone of the MVC Foolproof Validation library from https://foolproof.codeplex.com/ with bug fixes.
+
+
+This fork targets the issue that Foolproof doesn't not work with ```Validator.TryValidateObject(...)```. It doesn't validate the model, it just returns ture. This caused problems when a validation was triggerd from the server side (e.g. validation of a file based import).
 
 Example:
 ```html
@@ -33,6 +33,6 @@ Example:
         }
 ```
 
-All Unit Tests have been rewritten to test this behavior too.
+All Unit Tests have been rewritten to test this behaviour.
 
-QUnit test are updated to a new MVC 5 project (2 missing, 2 changed)
+QUnit test are updated to a new MVC 5 project (2 missing (compilation error), 2 changed (test results where mixed)))
