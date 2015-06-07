@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Foolproof", "Foolproof\Fool
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unit Tests", "Unit Tests\Unit Tests.csproj", "{20A89A92-C121-4D61-8986-3234E6F1EF53}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JavaScript Unit Tests", "JavaScript Unit Tests\JavaScript Unit Tests.csproj", "{D1C22203-EAA9-4D12-8B39-07E9E597015F}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JavaScript Unit Tests MVC 5", "JavaScript Unit Tests MVC 5\JavaScript Unit Tests MVC 5.csproj", "{39346394-5A3B-465F-8377-0052CAB8654D}"
 EndProject
 Global
