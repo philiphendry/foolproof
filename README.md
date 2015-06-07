@@ -11,26 +11,26 @@ This fork targets the issue that Foolproof doesn't not work with ```Validator.Tr
 
 Example:
 ```html
-        private class Model
-        {
-            public string Value1 { get; set; }
+private class Model
+{
+	public string Value1 { get; set; }
 
-            [NotEqualTo("Value1")]
-            public string Value2 { get; set; }
-        }
+	[NotEqualTo("Value1")]
+	public string Value2 { get; set; }
+}
 
-        [TestMethod()]
-        public void IsValid()
-        {
-            var model = new Model() { Value1 = "hello", Value2 = "goodbye" };
+[TestMethod()]
+public void IsValid()
+{
+	var model = new Model() { Value1 = "hello", Value2 = "goodbye" };
 
-            var ctx = new ValidationContext(model, null, null);
-            var results = new List<ValidationResult>();
+	var ctx = new ValidationContext(model, null, null);
+	var results = new List<ValidationResult>();
 
-            bool actual = Validator.TryValidateObject(model, ctx, results, true);
-            var expected = true;
-            Assert.AreEqual(actual, expected);
-        }
+	bool actual = Validator.TryValidateObject(model, ctx, results, true);
+	var expected = true;
+	Assert.AreEqual(actual, expected);
+}
 ```
 
 All Unit Tests have been rewritten to test this behaviour.
