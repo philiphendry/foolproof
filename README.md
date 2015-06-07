@@ -1,6 +1,9 @@
 foolproof
 =========
 
+Clone of the MVC Foolproof Validation library from https://foolproof.codeplex.com/ with bug fixes
+
+
 MVC Foolproof Validation aims to extend the Data Annotation validation provided in ASP.NET MVC.
 
 
