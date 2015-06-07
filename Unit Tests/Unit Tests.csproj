@@ -88,7 +88,6 @@
     <Compile Include="Validator\RequiredIfNotRegExMatchAttributeValidatorTest.cs" />
     <Compile Include="Validator\RequiredIfRegExMatchAttributeValidatorTest.cs" />
     <Compile Include="Validator\RequiredIfTrueAttributeValidatorTest.cs" />
-    <Compile Include="_PhoneFieldTest.cs" />
     <Compile Include="Validator\RequiredIfNotEmptyAttributeValidatorTest.cs" />
   </ItemGroup>
   <ItemGroup>
